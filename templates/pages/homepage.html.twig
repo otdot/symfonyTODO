@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<form action="{{path('create')}}">
+    <div>
+        <label for="task"> Task </label>
+        <input name="task" id="task" type="text"> </input>
+    </div>
+    <div>
+        <label for="date"> Due Date </label>
+        <input name="date" id="date" type="date"> </input>
+    </div>
+    <div>
+        <input value="Create task" type="submit"/>
+    </div>
+</form>
+<div>
+<ul>
+{{ flasher_render() }}
+{% for task in tasks %}
+    {% if task.daysDue < 1 %}
+        {% set dueclass = "dueToday" %}
+    {% elseif task.daysDue < 4 %}
+        {% set dueclass = "dueSoon" %}
+    {% else %}
+        {% set dueclass = "dueLater" %}
+    {% endif %}
+    <li class={{dueclass}}> <div> {{task.task}} -Due to: {{task.date|date("d-
+    m-Y")}}</div> <div> <a class="delete" onclick="return confirm('Are you sure to delete?')" href={{path("delete", {"id": task.id})}}><span class="material-symbols-outlined">
+close
+</span></a> <a class="update" href={{path("update", {"id": task.id})}}><span class="material-symbols-outlined">
+done
+</span></a></div> </li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
