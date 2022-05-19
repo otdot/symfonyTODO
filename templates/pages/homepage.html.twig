@@ -25,8 +25,12 @@
     {% else %}
         {% set dueclass = "dueLater" %}
     {% endif %}
-    <li class={{dueclass}}> <div> {{task.task}} -Due to: {{task.date|date("d-
-    m-Y")}}</div> <div> <a class="delete" onclick="return confirm('Are you sure to delete?')" href={{path("delete", {"id": task.id})}}><span class="material-symbols-outlined">
+   {% set done = "" %} 
+    {% if task.isDone %}
+        {% set done = "done" %}
+    {% endif %}
+    <li> <div> <span class={{done}} >{{task.task}}</span> - Due to: <span class={{dueclass}}>{{task.date|date("d-
+    m-Y")}}</<span></div> <div> <a class="delete" onclick="return confirm('Are you sure to delete?')" href={{path("delete", {"id": task.id})}}><span class="material-symbols-outlined">
 close
 </span></a> <a class="update" href={{path("update", {"id": task.id})}}><span class="material-symbols-outlined">
 done

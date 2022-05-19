@@ -83,7 +83,7 @@ ul li {
 }
 
 .dueLater {
-  color: black;
+  color: green;
 }
 
 .delete {
@@ -91,7 +91,11 @@ ul li {
 }
 
 .update {
-  color: green;
+  color: black;
+}
+
+.done {
+  text-decoration: line-through;
 }
 
 footer {

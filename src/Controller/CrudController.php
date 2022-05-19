@@ -34,7 +34,7 @@ class CrudController extends AbstractController
             ];
         }
 
-        return $this->render("pages/homepage.html.twig", ["tasks" => $data, "dateNow" => $dateNow]);
+        return $this->render("pages/homepage.html.twig", ["tasks" => array_reverse($data)]);
     }
 
     #[Route("/create", name: "create")]
